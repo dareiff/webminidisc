@@ -34,7 +34,7 @@ The Windows USB stack requires a driver to be installed before using Web MiniDis
 Note: restart your browser after installation.
 
 ### Chrome OS
-Works without any addtional set up - tested with 91 stable (91.0.4472.102). If your user account or device is managed (by your school or company) you may run into issues. If you are using a personal Google account on a personal Chromebook you should be good to go.
+Works without any additional set up - tested with 91 stable (91.0.4472.102). If your user account or device is managed (by your school or company) you may run into issues. If you are using a personal Google account on a personal Chromebook you should be good to go.
 
 -----
 ## Differences between [Web Minidisc](https://github.com/cybercase/webminidisc) and Web Minidisc Pro
@@ -60,30 +60,37 @@ Development discussion and coordination happens through the [MiniDisc.wiki Disco
 
 ### How to build
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), so you can run:
-- `npm i` to install the required node modules (`--legacy-peer-deps` might be required for newer node.js versions)
-- `npm start` to start the development server
-- `npm build` to build for production
+The project is built with [Vite](https://vite.dev/) and requires **Node.js 22.12 or newer**.
 
-WASM modules are provided in the `public/` directory. However, if you wish to build those binaries yourself, instructions are provided in the `extra/` directory.
+- `npm install` to install the required node modules
+- `npm start` (or `npm run dev`) to start the development server
+- `npm run build` to type-check and build for production into `dist/`
+- `npm run preview` to serve the production build locally at http://localhost:4173
+- `npm run lint` to run ESLint
+
+WebUSB only works in a secure context, so the app can reach devices when served from `localhost` or over HTTPS, but not over plain HTTP on any other host.
+
+WASM modules are provided in the `public/` directory. However, if you wish to build those binaries yourself, instructions are provided in the `extra/` directory (see [BUILD_FFMPEGJS.md](extra/BUILD_FFMPEGJS.md) and [BUILD_ATRACDENC.md](extra/BUILD_ATRACDENC.md)).
+
+### Self-hosting with Docker
+
+`Dockerfile.server` builds the app and serves it with nginx on port 8080, so the host only needs Docker:
+
+```sh
+docker build -f Dockerfile.server -t webminidisc .
+docker run --rm -p 8080:8080 webminidisc
+```
+
+`docker-compose.yml` runs the same image without publishing a port, for use behind a reverse proxy. The proxy **must** terminate TLS: over plain HTTP the app loads, but it can never connect to a device. To serve from a subdirectory rather than the root of a hostname, pass `--build-arg PUBLIC_URL=/some/path/`.
+
+(The plain `Dockerfile` is the one CI publishes to Docker Hub; it expects `dist/` to have been built on the host first.)
 
 -----
 ### Development on macOS
 
-#### Install Xcode Build Tools CLI & Homebrew
-In macOS Terminal run:
-- `xcode-select install` - to install XCode Command Line Tools
-- `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` - to install Homebrew
+No native toolchain is needed. Install Node.js 22.12 or newer (for example with [Homebrew](https://brew.sh/): `brew install node`), then follow [How to build](#how-to-build).
 
-After homebrew is finished installing,
-
-#### Install gcc & libvips
-
-In macOS Terminal: `brew install --build-from-source gcc`, wait for it to finish then run `brew install vips` (this command may install gcc again from an available pre-built binary, if one exists for your current macOS version, this is normal behaviour as gcc is needed for vips to work).
-
-#### Proceeding with installation
-
-With the above prerequisites done, you can continue the build process as described in the [How to Build](#how-to-build) section
+`npm install` may warn that the `usb` and `dtrace-provider` packages have install scripts that were not run. They are Node-only dependencies of the device libraries and are not used by the web app, so the warning can be ignored.
 
 -----
 ### How to contribute
@@ -103,6 +110,6 @@ Web MiniDisc Pro and its predecessors are GPL licensed. You are free to fork or 
 - [Atracdenc](https://github.com/dcherednik/atracdenc/) *to support atrac3 encoding (lp2, lp4 audio formats).*
 - [Emscripten](https://emscripten.org/) *to run both FFmpeg and Atracdenc in the browser.*
 - [netmd-js](https://github.com/cybercase/netmd-js) *to send commands to NetMD devices using Javascript*
-- [material-ui](https://material-ui.com/) *to build the user interface.*
+- [MUI](https://mui.com/) *to build the user interface.*
 - [linux-minidisc](https://github.com/linux-minidisc/linux-minidisc) *to build the netmd-js library.*
 - [netmd-exploits](https://github.com/asivery/netmd-exploits/) *For factory mode commands and track dumping*
