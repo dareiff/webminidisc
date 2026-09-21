@@ -303,10 +303,10 @@ export const SongRecognitionDialog = (props: {}) => {
             open={visible}
             maxWidth={'xs'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="song-recognition-dialog-slide-title"
             aria-describedby="song-recognition-dialog-slide-description"
-            classes={{ paperScrollPaper: classes.dialog }}
+            classes={{ paper: classes.dialog }}
         >
             <DialogTitle id="convert-dialog-slide-title">Song Recognition Settings</DialogTitle>
             <DialogContent className={classes.dialogContent}>

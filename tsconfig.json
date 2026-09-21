@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    /* tsc runs with noEmit: Vite/rolldown does the actual transpiling, so
+       `target` and `lib` only affect type checking. */
+    "target": "ES2020",
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext",
-      "WebWorker",
+      "DOM",
+      "DOM.Iterable",
+      "ESNext",
+      "WebWorker"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -13,13 +15,13 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "downlevelIteration": true,
+    "jsx": "react-jsx",
+    /* `@asyncMutex` in src/services/interfaces uses legacy (TS) decorators. */
     "experimentalDecorators": true
   },
   "include": [

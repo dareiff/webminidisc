@@ -51,7 +51,7 @@ export const FactoryModeProgressDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="factory-dialog-slide-title"
             aria-describedby="factory-dialog-slide-description"
         >

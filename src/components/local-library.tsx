@@ -216,7 +216,7 @@ export const LocalLibraryDialog = ({ setUploadedFiles }: { setUploadedFiles: (fi
             maxWidth={'sm'}
             fullWidth={true}
             fullScreen={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="library-dialog-slide-title"
         >
             <DialogTitle id="library-dialog-slide-title">Library</DialogTitle>

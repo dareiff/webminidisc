@@ -49,7 +49,7 @@ export const DiscProtectedDialog = () => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition}
+            slots={{ transition: Transition }}
             aria-labelledby="disc-protected-dialog-slide-title"
         >
             <DialogTitle id="disc-protected-dialog-slide-title">Write Protected Disc</DialogTitle>

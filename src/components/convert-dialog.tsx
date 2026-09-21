@@ -45,7 +45,7 @@ import CloudDownload from '@mui/icons-material/CloudDownload';
 import RemoveIcon from '@mui/icons-material/Remove';
 import EditIcon from '@mui/icons-material/Edit';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
@@ -677,13 +677,12 @@ export const ConvertDialog = (props: { files: (File | AdaptiveFile)[] }) => {
             currentHalfWidthTextLeft -= halfWidth;
             currentFullWidthTextLeft -= fullWidth;
             return (
-                <ListItem
+                <ListItemButton
                     key={`${i}`}
                     disableGutters={true}
                     onDoubleClick={() => renameTrackManually(i)}
                     onClick={() => setSelectedTrack(i)}
                     ref={ref}
-                    button
                 >
                     <ListItemIcon>
                         <Radio checked={isSelected} value={`track-${i}`} size="small" />
@@ -710,7 +709,7 @@ export const ConvertDialog = (props: { files: (File | AdaptiveFile)[] }) => {
                             </span>
                         }
                     />
-                </ListItem>
+                </ListItemButton>
             );
         });
     }, [
@@ -903,7 +902,7 @@ export const ConvertDialog = (props: { files: (File | AdaptiveFile)[] }) => {
             open={visible}
             maxWidth={'xs'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="convert-dialog-slide-title"
             aria-describedby="convert-dialog-slide-description"
             classes={{ paper: cx({ [classes.himdDialog]: usesHimdTitles }) }}

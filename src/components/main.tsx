@@ -10,7 +10,7 @@ import {
     Droppable,
     DroppableProvided,
     DroppableStateSnapshot,
-} from 'react-beautiful-dnd';
+} from '@hello-pangea/dnd';
 import { listContent, deleteTracks, moveTrack, groupTracks, deleteGroups, dragDropTrack, ejectDisc, flushDevice } from '../redux/actions';
 import { actions as renameDialogActions, RenameType } from '../redux/rename-dialog-feature';
 import { actions as convertDialogActions } from '../redux/convert-dialog-feature';
@@ -635,7 +635,7 @@ export const Main = (props: {}) => {
                         disabled={selectedGroupsCount > 0}
                         color="secondary"
                         onChange={handleSelectAllClick}
-                        inputProps={{ 'aria-label': 'select all tracks' }}
+                        slotProps={{ input: { 'aria-label': 'select all tracks' } }}
                     />
                 ) : null}
                 {selectedCount > 0 || selectedGroupsCount > 0 ? (

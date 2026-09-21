@@ -31,7 +31,7 @@ export const ErrorDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="error-dialog-slide-title"
             aria-describedby="error-dialog-slide-description"
         >

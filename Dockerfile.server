@@ -1,0 +1,45 @@
+# Self-contained image: builds the app and serves it with nginx.
+#
+# This is separate from ./Dockerfile, which CI (create-zip-release.yml) builds
+# and which expects a dist/ directory produced on the host. This one needs
+# nothing but the repo.
+#
+#   docker build -f Dockerfile.server -t webminidisc .
+#   docker run --rm -p 8080:8080 webminidisc
+
+# ---------- build ----------
+FROM node:22-alpine AS build
+WORKDIR /app
+
+# `npm run update-version` is a bash script that shells out to git.
+RUN apk add --no-cache git bash
+
+COPY package.json package-lock.json ./
+# --ignore-scripts skips the native `usb` addon (a Node-only binding pulled in
+# by himd-js/netmd-js that the browser bundle never touches), which would
+# otherwise need a full C++ toolchain in this image. Nothing in the build
+# depends on an install script -- Vite 8 uses rolldown, so esbuild is gone.
+RUN npm ci --ignore-scripts
+
+COPY . .
+
+# .git is copied in from the build context and is owned by a different uid.
+RUN git config --global --add safe.directory /app
+
+# Base path the app is served under. Leave as "/" for a dedicated (sub)domain;
+# set to "/webminidisc/" etc. if it lives in a subdirectory.
+ARG PUBLIC_URL=/
+ENV PUBLIC_URL=${PUBLIC_URL}
+
+RUN npm run build
+
+# ---------- serve ----------
+FROM nginx:1.29-alpine AS runtime
+
+COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD wget -qO- http://127.0.0.1:8080/ >/dev/null || exit 1

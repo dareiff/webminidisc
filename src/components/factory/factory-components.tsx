@@ -157,7 +157,7 @@ export const TocTable = ({
     F - Free
 */
 
-export const ComponentOrDisabled = ({ children, disabled }: { children: JSX.Element; disabled: boolean }) => {
+export const ComponentOrDisabled = ({ children, disabled }: { children: React.JSX.Element; disabled: boolean }) => {
     return !disabled ? (
         children
     ) : (

@@ -106,7 +106,7 @@ export const FactoryModeEditOtherValuesDialog = (props: {}) => {
             onClose={handleClose}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="factory-fragment-mode-dialog-title"
         >
             <DialogTitle id="factory-fragment-mode-dialog-title">Edit Other ToC Values</DialogTitle>

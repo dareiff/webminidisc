@@ -223,7 +223,7 @@ export const RenameDialog = (props: {}) => {
             onClose={handleCancelRename}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="rename-dialog-title"
         >
             <DialogTitle id="rename-dialog-title">Rename {what}</DialogTitle>

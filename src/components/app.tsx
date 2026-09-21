@@ -106,15 +106,19 @@ const themeCommons = {
         },
         MuiDialog: {
             defaultProps: {
-                PaperProps: {
-                    elevation: 0,
+                slotProps: {
+                    paper: {
+                        elevation: 0,
+                    },
                 },
             },
         },
         MuiMenu: {
             defaultProps: {
-                PaperProps: {
-                    elevation: 24,
+                slotProps: {
+                    paper: {
+                        elevation: 24,
+                    },
                 },
             },
         },

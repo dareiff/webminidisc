@@ -106,7 +106,7 @@ export const UploadDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
         >

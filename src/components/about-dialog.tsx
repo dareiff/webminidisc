@@ -42,7 +42,7 @@ export const AboutDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="about-dialog-slide-title"
         >
             <DialogTitle id="about-dialog-slide-title">About Web MiniDisc Pro</DialogTitle>

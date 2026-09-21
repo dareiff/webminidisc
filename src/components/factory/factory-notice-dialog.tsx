@@ -49,7 +49,7 @@ export const FactoryModeNoticeDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="factory-notice-dialog-slide-title"
             aria-describedby="factory-notice-dialog-slide-description"
         >

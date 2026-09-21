@@ -1,0 +1,36 @@
+services:
+  webminidisc:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+      args:
+        # Served from the root of its own hostname (md.derekr.xyz).
+        PUBLIC_URL: /
+    image: webminidisc:local
+    container_name: webminidisc
+    restart: unless-stopped
+
+    # No published port: the reverse proxy reaches this on the shared network.
+    # For a quick local check instead, comment `expose` and use:
+    #   ports: ["8080:8080"]
+    expose:
+      - "8080"
+
+    # WebUSB only works on a secure origin, so whatever proxies this MUST
+    # terminate TLS for md.derekr.xyz. Over plain HTTP the app loads but can
+    # never talk to a MiniDisc device.
+
+    # Example (Traefik) -- adjust to your proxy:
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.webminidisc.rule=Host(`md.derekr.xyz`)"
+    #   - "traefik.http.routers.webminidisc.entrypoints=websecure"
+    #   - "traefik.http.routers.webminidisc.tls.certresolver=letsencrypt"
+    #   - "traefik.http.services.webminidisc.loadbalancer.server.port=8080"
+
+    # networks:
+    #   - proxy
+
+# networks:
+#   proxy:
+#     external: true

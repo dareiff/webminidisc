@@ -40,7 +40,7 @@ export const W95Controls = (props: {
     discPresent: boolean;
     classes: any;
     lcdScroll: number;
-    lcdRef: React.RefObject<HTMLParagraphElement>;
+    lcdRef: React.RefObject<HTMLParagraphElement | null>;
     lcdScrollDuration: number;
 }) => {
     const { classes } = useStyles();

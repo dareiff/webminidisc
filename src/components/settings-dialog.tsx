@@ -325,7 +325,7 @@ export const SettingsDialog = (props: {}) => {
             maxWidth={'sm'}
             classes={{ paper: classes.main }}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="about-dialog-slide-title"
         >
             <DialogTitle id="about-dialog-slide-title">Settings</DialogTitle>

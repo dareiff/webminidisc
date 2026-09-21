@@ -59,7 +59,7 @@ export const FactoryModeBadSectorDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="factory-bad-sector-dialog-slide-title"
             aria-describedby="factory-bad-sector-dialog-slide-description"
         >

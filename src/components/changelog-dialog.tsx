@@ -155,7 +155,7 @@ export const ChangelogDialog = (props: {}) => {
             open={visible}
             maxWidth={'xs'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="changelog-dialog-slide-title"
             aria-describedby="changelog-dialog-slide-description"
         >

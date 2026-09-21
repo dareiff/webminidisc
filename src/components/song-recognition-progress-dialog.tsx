@@ -68,7 +68,7 @@ export const SongRecognitionProgressDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="recognize-dialog-slide-title"
             aria-describedby="recognize-dialog-slide-description"
         >

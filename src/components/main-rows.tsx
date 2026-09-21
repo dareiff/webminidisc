@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-import { DraggableProvided } from 'react-beautiful-dnd';
+import { DraggableProvided } from '@hello-pangea/dnd';
 import { Track, Group, getDefaultCodec } from '../services/interfaces/netmd';
 import { formatTimeFromSeconds, secondsToHumanReadable } from '../utils';
 

@@ -97,7 +97,7 @@ export const OtherDeviceDialog = (props: {}) => {
             onClose={handleClose}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition}
+            slots={{ transition: Transition }}
             aria-labelledby="rename-dialog-title"
         >
             <DialogTitle id="rename-dialog-title">Add Custom Device</DialogTitle>

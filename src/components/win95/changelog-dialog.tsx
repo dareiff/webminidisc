@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, WindowHeader } from 'react95';
 import { DialogOverlay, DialogWindow, DialogFooter, DialogWindowContent, WindowCloseIcon, FooterButton } from './common';
 
-export const W95ChangelogDialog = (props: { visible: boolean; handleClose: () => void; content: JSX.Element }) => {
+export const W95ChangelogDialog = (props: { visible: boolean; handleClose: () => void; content: React.JSX.Element }) => {
     return props.visible ? (
         <DialogOverlay>
             <DialogWindow>

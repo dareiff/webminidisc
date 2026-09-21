@@ -103,7 +103,7 @@ export const DumpDialog = ({
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="dump-dialog-slide-title"
             aria-describedby="dump-dialog-slide-description"
         >

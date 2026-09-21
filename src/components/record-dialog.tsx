@@ -51,7 +51,7 @@ export const RecordDialog = (props: {}) => {
             open={visible}
             maxWidth={'sm'}
             fullWidth={true}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="record-dialog-slide-title"
             aria-describedby="record-dialog-slide-description"
         >

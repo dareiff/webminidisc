@@ -50,7 +50,7 @@ export const PanicDialog = (props: {}) => {
             maxWidth={'sm'}
             fullWidth={true}
             scroll={'paper'}
-            TransitionComponent={Transition as any}
+            slots={{ transition: Transition as any }}
             aria-labelledby="error-dialog-slide-title"
             aria-describedby="error-dialog-slide-description"
         >
